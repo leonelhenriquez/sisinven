@@ -1,0 +1,37 @@
+.margen-cuadro{
+	padding: 20px;
+	margin:55px;
+
+}
+
+.margen-imagen{
+	padding: 20px;
+	margin:15px;
+}
+
+.margen-card {
+	margin: 10px;
+}
+
+
+.label-codigo{
+	color: #848484;
+}
+
+.label-cantidad{
+	color: #000000 !important; 
+	size: 35px !important; 
+}
+.card-procantidad{
+	margin-top: 20px;
+	padding: 20px;
+}
+
+.textnomal{
+	font-weight: normal !important; 
+}
+
+.mab{
+	border-bottom: 1px solid #D5D8DC ;
+	position: relative;
+}

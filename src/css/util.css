@@ -1,0 +1,309 @@
+/*
+	Dialog
+*/
+:root {
+	--progress_dialog_color:#ff8500;
+}
+@keyframes dialogAni{
+	from{
+		margin-top:100%;
+		opacity:0;
+		transform:scale(1);
+		display:block;
+	}
+	top{
+		margin-top:5%;
+		opacity:1;
+		transform:scale(1);
+		display:block;
+	}
+}
+@keyframes dialogCloseAni{
+	from{
+		margin-top:5%;
+		opacity:1;
+		transform:scale(1);
+		display:block;
+	}
+	to{
+		margin-top:100%;
+		opacity:0;
+		transform:scale(1);
+		display:none;
+	}
+}
+@keyframes bgDialogAni{
+	0%{background:rgba(0, 0, 0, 0.0);}
+	10%{background:rgba(0, 0, 0, 0.035);}
+	20%{background:rgba(0, 0, 0, 0.070);}
+	30%{background:rgba(0, 0, 0, 0.105);}
+	40%{background:rgba(0, 0, 0, 0.140);}
+	50%{background:rgba(0, 0, 0, 0.175);}
+	60%{background:rgba(0, 0, 0, 0.210);}
+	70%{background:rgba(0, 0, 0, 0.245);}
+	80%{background:rgba(0, 0, 0, 0.280);}
+	90%{background:rgba(0, 0, 0, 0.315);}
+	100%{background:rgba(0, 0, 0, 0.350);}
+}
+@keyframes bgDialogCloseAni{
+	100%{background:rgba(0, 0, 0, 0.0);}
+	90%{background:rgba(0, 0, 0, 0.035);}
+	80%{background:rgba(0, 0, 0, 0.070);}
+	70%{background:rgba(0, 0, 0, 0.105);}
+	60%{background:rgba(0, 0, 0, 0.140);}
+	50%{background:rgba(0, 0, 0, 0.175);}
+	40%{background:rgba(0, 0, 0, 0.210);}
+	30%{background:rgba(0, 0, 0, 0.245);}
+	20%{background:rgba(0, 0, 0, 0.280);}
+	10%{background:rgba(0, 0, 0, 0.315);}
+	0%{background:rgba(0, 0, 0, 0.350);}
+}
+body.showDialog{
+	overflow-y: hidden !important;
+}
+.dialog{
+	background:rgba(0, 0, 0, 0.35);
+	display: block;
+	position:fixed;
+	top:0;
+	left:0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	z-index:100000;
+	text-align: center;
+	animation-name: bgDialogAni;
+	animation-duration: .35s;
+	animation-timing-function: ease-out;
+	padding: 50px;
+}
+
+.dialog .dialog-box{
+	display: inline-block;
+	box-sizing:  border-box;
+	margin: 0 auto;
+	position: relative;
+	max-width: 100%;
+	max-height: 100%;
+	padding: 32px 36px 8px 36px;
+	background-color:#fff;
+	border-radius: 0px;
+	box-shadow: 0 3px 15px -3px rgba(0, 0, 0, 0.2),
+				0 10px 15px -7px rgba(0, 0, 0, 0.12),
+				0 3px 6px 0px rgba(0, 0, 0, 0.2);
+	z-index:100000;
+	overflow-x:  hidden;
+	overflow-y: auto;
+	animation-name: dialogAni;
+	animation-duration: .35s;
+	animation-timing-function: ease-out;
+	border-radius: 5px;
+}
+
+.dialog.close_dialog{
+	background:rgba(0, 0, 0, 0.0);
+	animation-name: bgDialogCloseAni;
+	animation-timing-function: ease-in;
+}
+.dialog.close_dialog .dialog-box{
+    margin-top:100%;
+	animation-name: dialogCloseAni;
+	animation-timing-function: ease-in;
+}
+
+.dialog .dialog-box .close_button{
+	opacity:0.7;
+	display:block;
+	width: 32px;
+	height: 32px;
+	line-height: 24px;
+	position:absolute;
+	top: 4px;
+	right: 4px;
+	cursor: pointer;
+	padding: 4px;
+	border-radius: 100%;
+	background-color: rgb(0, 0, 0, 0.08);
+	color:#000;
+}
+
+.dialog .dialog-box .close_button:hover{
+	opacity:1;
+	
+}
+.dialog .dialog-box > *{
+	text-align:left;
+}
+.dialog .dialog-box .dialog__title{
+	color:#232f34;
+	font-weight: bold;
+	font-size: 21px;
+	margin: 0 0 21px;
+	line-height: 25px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.dialog .dialog-box .dialog__content{
+	color:#232f34;
+	font-weight: 300;
+	font-size: 14px;
+	height: auto;
+	overflow-x: hidden;
+	overflow-y:  auto;
+	position: relative;
+	display: block;
+	margin: 0px -32px;
+	padding: 0px 32px;
+	height: 100%;
+}
+.dialog .dialog-box .dialog__content > .mdc-form-field{
+	width:100%;
+	font-size:16px !Important;
+}
+.dialog .dialog-box .dialog__actions{
+	height: 65px;
+	line-height: 64px;
+	text-align:right;
+	padding-top: 0px;
+	padding-right:0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+}
+.dialog .dialog-box .dialog__actions > button{
+	display:inline-block;
+	font-size:14px;
+	height:38px;
+	background-color:#e3e3e3;
+	color:#505050;
+}
+.dialog.loading__dialog .dialog-box .dialog__content{
+	overflow:hidden;
+}
+.dialog.loading__dialog .dialog-box .dialog__content .progress-circular{
+	margin:10px auto 10px;
+}
+
+
+
+.dialog.loading__dialog .dialog-box .dialog__content .progress-circular .progress-circular-gap{
+	border-color:var(--progress_dialog_color);
+}
+.dialog.loading__dialog .dialog-box .dialog__content .progress-circular .progress-circular-spinner{
+	border-color:var(--progress_dialog_color) var(--progress_dialog_color) transparent;
+	border-width: 6px;
+}
+.dialog.loading__dialog .dialog-box .dialog__content .progress-circular .progress-circular-left .progress-circular-spinner{
+	border-right-color: transparent;
+}
+.dialog.loading__dialog .dialog-box .dialog__content .progress-circular .progress-circular-right .progress-circular-spinner{
+	border-left-color: transparent;
+}
+.dialog.loading__dialog .dialog-box .dialog__content .text__loading{
+	font-weight:bold;
+	padding:20px 10px
+}
+.dialog.error__dialog .dialog-box{
+	background-color:#F44336;
+	max-width:400px;
+	background-image:url('../images/icons/ic-report.svg');
+	background-repeat:no-repeat;
+	background-size:125px;
+	background-position: calc(100% + 30px) -33px;
+}
+
+.dialog.error__dialog .dialog-box .dialog__title{
+	font-size: 23px;
+	color:#FFF;
+}
+.dialog.error__dialog .dialog-box .dialog__content{
+	color: rgba(255, 255, 255, 0.8);
+	font-size:17px;
+}
+
+.dialog.error__dialog .dialog-box .dialog__actions{
+	background-color:#FFF;
+	margin: 32px -32px -8px -32px;
+	padding: 0px 32px;
+}
+
+.dialog.error__dialog .dialog-box .dialog__actions button{
+	background-color:#e5e5e5;
+	color:#4e4e4e;
+	box-shadow:none;
+}
+.md-button {
+	background: 0 0;
+	border: none;
+	border-radius: 2px;
+	color: #162025;
+	position: relative;
+	height: 36px;
+	margin: 0;
+	min-width: 64px;
+	padding: 0 16px;
+	display: inline-block;
+	font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0;
+	overflow: hidden;
+	will-change: box-shadow;
+	transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+	outline: none;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+	line-height: 36px;
+	vertical-align: middle
+}
+
+.md-button::-moz-focus-inner {
+	border: 0
+}
+
+.md-button:hover {
+	background-color: rgba(158,158,158,.2)
+}
+
+.md-button:focus:not(:active) {
+	background-color: rgba(0,0,0,.12)
+}
+
+.md-button:active {
+	background-color: rgba(158,158,158,.4)
+}
+.dialog .dialog-box .dialog__actions button,
+.dialog .dialog-box .dialog__actions input[type="submit"]{
+	margin: 0px 0px 0px 12px;
+	height: 36px;
+	font-weight: bold;
+	background-color: var(--secondary-color);
+	color: #FFF;
+}
+
+@media only screen and (max-width: 800px) {
+	.dialog .dialog-box{
+		margin: 25px 0px;
+		max-width: calc(100% - 25px);
+		max-height: calc(100% - 50px);
+	}
+	.dialog.dialog__full-size{
+		padding:0;
+	}
+	.dialog.dialog__full-size .dialog-box{
+		margin: 0px;
+		max-width: 100% !important;
+		max-height: 100%;
+		width: 100%;
+		height: 100%;
+		padding-bottom: 0px;
+		border-radius: 0px;
+	}
+
+	.dialog.dialog__full-size .dialog-box .dialog__content{
+		height: calc(100% - 111px);
+	}
+}

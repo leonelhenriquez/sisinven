@@ -1,0 +1,58 @@
+.barracontenedor{
+	width: 100%;
+	background-color: #317B38;
+	position: center;
+	color: #ffffff;
+	font-weight:bold !important;
+	margin: 0,0,0,0;
+	padding: 0;
+
+}
+
+.bold{
+	font-weight:bold !important;
+}
+
+.margen_block{
+	padding: 25px;
+
+}
+
+.colort{
+	color: #FF7F2F;
+	font-weight: bold;
+}
+
+.colortext1{
+	color: #C56C36;
+	font-weight: bold;
+	font-size: 30px;
+
+}
+
+.colortext2{
+	color: #FF914D;
+	padding: 30px;
+	font-size: 26px;
+
+}
+
+.tamanoletra{
+	font-size: 22px;
+	padding: 30px;
+}
+
+.bgcontent {
+	background-color: #12213B;
+	color: #ffffff;
+}
+
+.imagenescenter{
+display: block;
+margin-top: 25%;
+
+}
+
+.imagenfinal{
+	margin:5%;
+}

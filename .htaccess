@@ -1,0 +1,47 @@
+<Files .htaccess>
+	order allow,deny
+	deny from all
+</Files>
+
+#Options All -Indexes
+#IndexIgnore *
+
+
+
+RewriteEngine on
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{SERVER_NAME}/%{REQUEST_URI} [R=301,L]
+#RewriteCond %{HTTP_HOST} ^socialclublifestyle.com
+#RewriteRule (.*) https://www.socialclublifestyle.com/$1 [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /index.php [QSA,L]
+
+# STRONG HTACCESS PROTECTION
+
+<Files *.php>
+	order allow,deny
+	deny from all
+</Files>
+<FilesMatch ".*\.(json|html|txt|md)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch ".*\.(css|js|png|jpg|jpeg|svg|woff2)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<Files index.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
+<Files />
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+<IfModule mod_php7.c>
+	php_value zlib.output_compression 16386
+</IfModule>
