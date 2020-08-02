@@ -37,7 +37,7 @@
 		<script src="<?php echo _DIR_;?>node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="<?php echo _DIR_;?>node_modules/daemonite-material/js/material.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
-			$.jMaskGlobals.watchDataMask= true;	
+			$.jMaskGlobals.watchDataMask= true;
 			function keyFloatEvent(e){
 				var root = this;
 				//console.log(e.key);

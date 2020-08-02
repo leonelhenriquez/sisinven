@@ -15,27 +15,30 @@
 			)
 		)
 		{
-			$existe = true;
-			$pro = $this->getDatabase()->FetchArray($query_producto);
-			echo json_encode(array(
-				'id'=> $pro['id_producto'],
-				'nombre' => $pro['nombre'],
-				'categoria' => 
-					array(
-						'id'=> $pro['categoria'],
-						'nombre' => $pro['nombrecat']
-					),
-				'marca' => $pro['marca'],
-				'modelo' => $pro['marca'],
-				'cantidad_existencia' => $pro['cantidad_existencia'],
-				'descripcion' => $pro['descripcion'],
-				'precio' => $pro['precio'],
-				'proveedor' => 
-					array(
-						'id' => $pro['proveedor'],
-						'nombre' => $pro['nombreprov']
-					)
-			));
+			//$existe = true;
+			$listProductos = array();
+			if($pro = $this->getDatabase()->FetchArray($query_producto)){
+				array_push($listProductos, array(
+					'id'=> $pro['id_producto'],
+					'nombre' => $pro['nombre'],
+					'marca' => $pro['marca'],
+					'modelo' => $pro['marca'],
+					'cantidad_existencia' => $pro['cantidad_existencia'],
+					'descripcion' => $pro['descripcion'],
+					'precio' => $pro['precio'],
+					'categoria' => 
+						array(
+							'id'=> $pro['categoria'],
+							'nombre' => $pro['nombrecat']
+						),
+					'proveedor' => 
+						array(
+							'id' => $pro['proveedor'],
+							'nombre' => $pro['nombreprov']
+						)
+				));
+			}
+			echo json_encode($listProductos);
 		}
 	}else if($this->getHttpVars()->isSetPost("nombre") && $this->getHttpVars()->isSetPost("categoria") && $this->getHttpVars()->isSetPost("nombre")){
 		$sql = sprintf("
@@ -66,7 +69,7 @@
 
 		if($query_producto = $this->getDatabase()->Query($sql))
 		{
-			$existe = true;
+			//$existe = true;
 			$listProductos = array();
 			while ($pro = $this->getDatabase()->FetchArray($query_producto)) {
 				array_push($listProductos, array(
@@ -93,6 +96,6 @@
 		}
 	}
 
-	if(!$existe){
+	/*if(!$existe){
 		echo json_encode(array("ERROR"=> "El producto no existe."));
-	}
+	}*/

@@ -888,6 +888,7 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	background-color:#FFF;
 	margin-bottom: 32px;
 	max-width: 1400px;
+	transition: all 0.5s;
 }
 
 #view_productos .card.btn_actions,
