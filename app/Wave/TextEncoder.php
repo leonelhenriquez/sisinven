@@ -13,7 +13,14 @@
 	namespace Wave;
 
 	class TextEncoder{
-		function text_encode($texto){
-			return htmlentities($texto);
+
+		private static $flags 		= ENT_HTML5;
+		private static $encoding 	= "UTF-8";
+
+		public static function text_encode($texto){
+			return htmlentities($texto,self::$flags,self::$encoding);
+		}
+		public static function text_decode($texto){
+			return html_entity_decode($texto,self::$flags,self::$encoding);
 		}
 	}

@@ -23,7 +23,7 @@
         <meta charset='utf-8'>
 		<title><?php echo $view->getTitulo();?></title>
 		<!--<link rel="shortcut icon" href="icono.ico">-->
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,  minimum-scale=0.9, maximum-scale=0.9">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,  minimum-scale=1.0, maximum-scale=1.0">
 		
 		<link rel="stylesheet" href="<?php echo _DIR_;?>src/css/style.css">
 		<link rel="stylesheet" href="<?php echo _DIR_;?>src/css/util.css">

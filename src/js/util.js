@@ -18,17 +18,17 @@ class Dialog{
 						`);
 		$("#"+this.getId()+" .dialog__title,#"+this.getId()+" .dialog__actions").css({'display':'none'});
 		var root = this;
-		$("#"+this.getId()).click(function(e){
+		$("#"+this.getId()).click((e) => {
 			if (root.isOverlayClose()) {
 				if(e.target==e.currentTarget){
 					root.hide();
-					root.overlayCloseEvent.forEach(function(event){
+					root.overlayCloseEvent.forEach((event) => {
 						setTimeout(event, 0);
 					});
 				}
 			}
 		});
-		$("#"+this.getId()+">.dialog-box>.close_button").click(function(e){
+		$("#"+this.getId()+">.dialog-box>.close_button").click((e) => {
 			root.hide();
 		});
 		/*$(window,"#"+this.getId()+", #"+this.getId()+" .dialog__content").resize(function(){
@@ -61,7 +61,7 @@ class Dialog{
 		var content = $("#"+this.getId()+" .dialog__actions");
 		content.html("").css({'display':'block'});
 		if (Util.isArray(actions)) {
-			actions.forEach(function(element) {
+			actions.forEach((element) => {
 				content.append('<button type="button" class="btn btn-primary">'+element+'</button>');
 			});
 		}else{
@@ -141,10 +141,10 @@ class Dialog{
 		}
 		$("#"+this.getId()).addClass("close_dialog");
 		var root = this;
-		setTimeout(function() {
+		setTimeout(() => {
 			$("#"+root.getId()).css({'display':'none'});
 		}, 350);
-		this.hideEvents.forEach(function(event){
+		this.hideEvents.forEach((event) => {
 			setTimeout(event, 0);
 		});
 		return this;
@@ -152,7 +152,7 @@ class Dialog{
 
 	destroy(){
 		var id = this.getId();
-		setTimeout(function() {
+		setTimeout(() => {
 			$("#"+id).remove();
 			id = null;
 		}, 500);
@@ -227,10 +227,10 @@ class ErrorDialog extends Dialog{
 		this.addClassDialog("error__dialog").setCloseIconButton()
 		.setTitle("Error")
 		.setActions(['OK'])
-		.setActionClick(0,function(){
+		.setActionClick(0,() => {
 			root.hide();
 		})
-		.addHideEvent(function(){
+		.addHideEvent(() => {
 			root.destroy();
 		})
 
@@ -248,12 +248,12 @@ $.ajaxSetup({
 	cache: false,
 	contentType: false,
 	processData: false,
-	error: function() {
-		setTimeout(function() {
+	error: () => {
+		setTimeout(() => {
 			console.log("Se a perdido la conexión.");
 			var dialogError = new ErrorDialog();
 			dialogError.setOverlayClose(true);
-			dialogError.setOverlayCloseEvent(function(){
+			dialogError.setOverlayCloseEvent(() => {
 				dialogError.hide();
 			});
 			dialogError.setTextError("Se a perdido la conexión de red.");
@@ -261,11 +261,11 @@ $.ajaxSetup({
 		}, 10);
 	},
 	statusCode: {
-		404: function() {
-			setTimeout(function() {
+		404: () => {
+			setTimeout(() => {
 				var dialogError = new ErrorDialog();
 				dialogError.setOverlayClose(true);
-				dialogError.setOverlayCloseEvent(function(){
+				dialogError.setOverlayCloseEvent(() => {
 					dialogError.hide();
 				});
 				dialogError.setTextError("Error 404: La pagina no existe.");
@@ -292,7 +292,7 @@ class Util{
 
 		post_url 	= location.origin+'/'+post_url;
 		post_data 	= (typeof post_data === 'undefined') ? new FormData() : post_data;
-		callback 	= (typeof callback === 'undefined') ? function(d,s){} : callback;
+		callback 	= (typeof callback === 'undefined') ? ()=>{} : callback;
 		
 		post_data 	= Util.parseFormData(post_data);
 		
@@ -310,6 +310,11 @@ class Util{
 		// Convert it to base 36 (numbers + letters), and grab the first 9 characters
 		// after the decimal.
 		return '_' + Math.random().toString(36).substr(2, 9);
+	}
+	static getSize(list){
+		var size = 0;
+		$.each(list, () => size++);
+		return size;
 	}
 }
 

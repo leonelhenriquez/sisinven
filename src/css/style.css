@@ -680,9 +680,12 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 }
 #view_profile,
 #view_proveedores,
-#view_productos,
-#view_facturar_new{
+#view_productos{
 	margin: 0px 16px 16px 16px;
+	box-shadow: none;
+}
+#view_facturar_new{
+	margin: 16px 16px 16px 16px;
 	box-shadow: none;
 }
 #view_proveedores .title__page,
@@ -889,6 +892,8 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	margin-bottom: 32px;
 	max-width: 1400px;
 	transition: all 0.5s;
+	border-radius: 5px;
+	overflow: hidden;
 }
 
 #view_productos .card.btn_actions,
@@ -906,6 +911,7 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 #view_facturar_new .card .card-body{
 	padding: 0px 0px 0px 0px;
 	background-color:transparent !important;
+	transition: height 0.6s;
 }
 #view_productos .card .row,
 #view_facturar_new .card .row{
@@ -913,6 +919,7 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	padding: 10px 6px 10px 4px;
 	background-color:#FFF;
 	border-top: 1px solid #e2e2e2;
+	transition: all 0.5s;
 }
 
 #view_productos .card .row:nth-child(2n+1),
@@ -926,7 +933,7 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	background-color:#ffffff;
 	border-top: 1px solid #e2e2e2;
 	padding: 16px 4px;
-	border-radius: 0px 0px 5px 5px;
+	/* border-radius: 0px 0px 5px 5px; */
 }
 #view_productos .card .row.title__productos,
 #view_facturar_new .card .row.title__productos{
@@ -946,7 +953,7 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 }
 */
 #view_productos .card .card-body .row .col,
-#view_facturar_new .card .card-body .row .col{
+#view_facturar_new .card:not(.card-compra-info) .card-body .row:not(.row-actions) .col{
 	padding: 0px 6px;
 	border-left: 2px solid rgb(0, 0, 0, 0.3);
 	text-align: center;
@@ -956,6 +963,24 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	height: 30px;
 	line-height: 30px;
 	font-size: 12px;
+}
+@media only screen and (min-width: 800px) {
+	#view_facturar_new .card .card-body.efect-hover .row{cursor: pointer;}
+	#view_facturar_new .card .card-body.efect-hover,
+	#view_facturar_new .card .card-body.efect-hover .row,
+	#view_facturar_new .card .card-body.efect-hover .col{
+		transition:all 0.3s;
+	}
+	#view_facturar_new .card .card-body.efect-hover:hover .row .col{
+		opacity:0.5;
+	}
+	#view_facturar_new .card .card-body.efect-hover .row:hover .col{
+		opacity:1;
+	}
+	#view_facturar_new .card .card-body.efect-hover .row:hover{
+		opacity:1;
+		background-color:rgb(245 245 245 / 1);
+	}	
 }
 
 #view_facturar_new .card.addedbox .card-body .row .col .form-group {
@@ -992,7 +1017,7 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	border-color: #6f6f6f;
 }
 #view_productos .card .card-body .row .col:nth-child(1),
-#view_facturar_new .card .card-body .row .col:nth-child(1){
+#view_facturar_new .card .card-body .row:not(.row-actions) .col:nth-child(1){
 	border-left:none;
 }
 
@@ -1028,6 +1053,116 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	overflow: inherit;
 }
 
+
+#view_facturar_new .card .row.row-actions .col .pagination-nav{}
+#view_facturar_new .card .row.row-actions .col .pagination-nav .pagination{
+	margin:0;
+	background-color:transparent;
+}
+#view_facturar_new .card .row.row-actions .col .pagination-nav .pagination .page-link{
+	font-weight: bold;
+
+}
+#view_facturar_new .card .row.row-actions .col .pagination-nav .pagination .page-link:not(.page-link-icon){
+	/*color:  #FFF;*/
+	background-color: var(--blue);
+	color: #FFF;
+	border-radius: 100%;
+	width: 35px;
+	height: 35px;
+	line-height: 35px;
+	margin-left: 5px !important;
+	margin-right: 5px !important;
+	padding: 0px 0px;
+	text-align: center;
+}
+
+#view_facturar_new .card.card-compra-info{
+	/* overflow: auto; */
+	border-radius: 5px !important;
+}
+
+#view_facturar_new .card.card-compra-info .row.info-compra .col:nth-child(1){
+	max-width:fit-content;
+	padding-right: 0;
+	/* font-size: 25px; */
+	color: #fff;
+}
+#view_facturar_new .card.card-compra-info .row.info-compra{
+	/* border-radius:0px !important; */
+}
+#view_facturar_new .card-compra-info .row.info-compra{
+	background-color:transparent !important;
+	/* border-radius: 5px 5px 0 0; */
+	border-width: 0px;
+	color:#FFF;
+	font-weight:bold;
+	font-size: 23px;
+	padding: 32px 20px;
+}
+
+#view_facturar_new .card-compra-info .row.info-compra .total-money{
+	font-weight: 600;
+	opacity: 0.9;
+}
+#view_facturar_new .card-compra-info .info-compra-input{
+	background-color: #43A047 !important;
+	color: #FFF;
+	padding: 20px 20px;
+}
+
+#view_facturar_new .card-compra-info .info-compra-input *{
+	color: #FFF;
+	font-size:16px;
+}
+
+#view_facturar_new .card-compra-info .info-compra-input .col:nth-child(1){
+	font-weight:bold;
+}
+#view_facturar_new .card-compra-info .info-compra-input input{
+	border-color:#FFF;
+}
+
+#view_facturar_new .card-compra-info .info-compra-input input::placeholder{
+	color:#ffffffad;
+}
+
+#view_facturar_new .card-compra-info .info-compra-input input:hover{
+	box-shadow: inset 0 -2px 0 -1px rgb(255 255 255 / 87%);
+}
+
+#view_facturar_new .card-compra-info .info-compra-input input:focus{
+	border-color: #FFF !important;
+	box-shadow:inset 0 -2px 0 -1px #ffffff !important;
+}
+@keyframes animationEfectIsSlected{
+	50%{
+		background-color: #dedede;
+		box-shadow:0px 0px 10px rgb(0 0 0 / 39%);
+	}
+}
+
+#view_productos .card .row.efect-isselected,
+#view_facturar_new .card .row.efect-isselected{
+	position:relative;
+	z-index:100;
+
+	animation-name: animationEfectIsSlected;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+
+	-webkit-animation-name: animationEfectIsSlected;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+
+	-moz-animation-name: animationEfectIsSlected;
+	-moz-animation-duration: 3s;
+	-moz-animation-iteration-count: infinite;
+
+	-o-animation-name: animationEfectIsSlected;
+	-o-animation-duration: 3s;
+	-o-animation-iteration-count: infinite;
+}
 
 @media only screen and (max-width: 800px) {
 	header .nav__container{
@@ -1168,6 +1303,13 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 	#view_productos .card .card-body .row .col:nth-child(8),
 	#view_productos .card .card-body .row .col:nth-child(9){
 		display: none;
+	}
+	.hidden-movil{
+		display: none;
+	}
+	#view_facturar_new{
+		margin-left: 0px;
+		margin-right: 0px;
 	}
 }
 

@@ -169,6 +169,12 @@
 							$view->setFile(_DIR_FOLDERVIEW_."newfactura.php")
 								->setTitulo("Nueva factura");
 						break;
+					case '/facturar/new/save':
+							$view  = new View();
+							$view->setFile(_DIR_FOLDERVIEW_."savefactura.php")
+								->setUseHeaders(false)
+								->setAjaxRequest(true);
+						break;
 					
 				}
 				if($this->isSelectUrl('image')){

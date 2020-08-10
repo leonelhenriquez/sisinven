@@ -65,11 +65,12 @@
 			}
 			if($this->getAppSettings()->getAppLangs()!==null && $this->getAppSettings()->getDefaultLanguage()!==null){
 				$this->language = new Language($this->getAppSettings()->getAppLangs(),$this->getAppSettings()->getDefaultLanguage());
-				if($this->getAppSettings()->getLanguage()==null){
-					$this->getLanguage()->setLanguage($this->getAppSettings()->getDefaultLanguage());
-				}else{
-					$this->getLanguage()->setLanguage($this->getAppSettings()->getLanguage());
-				}
+				
+				$this->getLanguage()->setLanguage(
+					$this->getAppSettings()->getLanguage()==null ? 
+					$this->getAppSettings()->getDefaultLanguage() : 
+					$this->getAppSettings()->getLanguage()
+				);
 			}
 		}
 

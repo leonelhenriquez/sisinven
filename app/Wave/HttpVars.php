@@ -41,7 +41,7 @@
 					}
 					return $var;
 				}else{
-					return $this->text_encode($var);
+					return TextEncoder::text_encode($var);
 				}
 			}
 		}
