@@ -1,4 +1,7 @@
 <?php
+	
+	$saved = false;
+
 	if($this->getHttpVars()->isSetPost("dataFactura")){
 		$dataFactura = json_decode(Wave\TextEncoder::text_decode(
 			$this->getHttpVars()->post("dataFactura")
@@ -23,8 +26,15 @@
 				$cantidad_existencia_new = ((int)$producto['cantidad_existencia']) - getCantidadProducto($dataFactura['lista_compra'],$producto['id_producto']);
 				$this->getDatabase()->Query(sprintf("UPDATE productos SET cantidad_existencia = '%d'",$cantidad_existencia_new));
 			}
+			echo json_encode(array(
+				'SAVED':true,
+			));
 		}
 	}
+
+	echo json_encode(array(
+		'SAVED':$saved,
+	));
 
 	function getStringProductosIdWhereSql($datos){
 		$string = "";
