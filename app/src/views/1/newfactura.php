@@ -45,7 +45,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 				</div>
 			</div>
 			<div class="row row-actions" id="rowActionsFactura" style="display:none;">
-				<div class="col  d-flex flex-row-reverse">
+				<div class="col d-flex flex-row-reverse">
 					<button type="button" class="btn btn-primary color-btn-card" id="btn__finalizar_compra" style="margin-left: 15px;">
 						<span class="material-icons">shopping_cart</span>
 						Finalizar compra
@@ -80,7 +80,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 				</div>
 				<div class="col" style="max-width: 100%;">
 					<div class="form-group">
-						<input type="text" class="form-control" id="txt_nombre_pro" placeholder="Nombre">
+						<input type="text" class="form-control" id="txt_nombre_pro" placeholder="Nombre, Descripción, Marca, Modelo">
 					</div>
 				</div>
 				<div class="col" style="max-width: 150px;">

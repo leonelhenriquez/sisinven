@@ -94,7 +94,7 @@
 			}
 			echo json_encode($listProductos);
 		}
-	}
+	}else if($this->getHttpVars()->isSetPost("list_")){}
 
 	/*if(!$existe){
 		echo json_encode(array("ERROR"=> "El producto no existe."));

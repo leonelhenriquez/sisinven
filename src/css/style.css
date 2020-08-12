@@ -196,7 +196,7 @@ header.navbar .navbar-collapse{
 .navdrawer-nav{
 
 }
-.navdrawer-nav .nav-item{margin: 6px 8px 6px 4px;}
+.navdrawer-nav .nav-item{margin: 6px 8px 6px 0px;}
 .navdrawer-nav .nav-item .nav-link{
 	font-weight: bold;
 	color: #FFF;
@@ -1049,6 +1049,7 @@ section.main #slider__main_page.carousel.slide .bg-carousel-item:nth-child(2){
 #view_facturar_new .card.custom-color.custom-color-dark .card-body .row.title__productos .col{
 	border-color: #FFF;
 }
+/*#view_productos .card .row.row-actions .col,*/
 #view_facturar_new .card .row.row-actions .col{
 	height: inherit;
 	line-height:inherit;

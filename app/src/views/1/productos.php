@@ -51,14 +51,13 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 	$listProveedoresOption .= sprintf('<option value="%d">%s</option>',$provObj->getIdProveedor(),$provObj->getNombreProveedor())."\n";
 }
 ?>
-<section id="view_productos">
+<section id="view_facturar_new" style="margin-top: 0px">
 	<div class="title__page"><i class="material-icons mr-3">shopping_basket</i> Productos</div>
 
 	<div class="card btn_actions">
 		<div class="card-body">
-			
-			<div class="row">
-				<div class="col d-flex flex-row-reverse col__buttons">
+			<div class="row row-actions">
+				<div class="col d-flex flex-row-reverse">
 					<button type="button" class="btn btn-primary color-btn-card" id="btn__add_pro">
 						<span class="material-icons">add</span>
 						Agregar producto
@@ -68,10 +67,11 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 		</div>
 	</div>
 
-	<div class="card">
+	<div class="card addedbox custom-color custom-color-dark" style="background-color: #2196f3;">
 		<div class="card-body">
-			<!--<h5 class="card-title"><span class="material-icons">assignment</span> Lista de proveedores</h5>-->
-
+			<div class="row title__productos" style="background-color: transparent;">
+				<div class="col" style="max-width: 100%;">Lista de productos</div>
+			</div>
 			<div class="row title__productos">
 				<div class="col" style="max-width: 60px;">Codigo</div>
 				<div class="col" style="max-width: 100%;">Nombre</div>
@@ -84,6 +84,8 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 				<div class="col" style="max-width: 100px;">Proveedor</div>
 				<div class="col" style="max-width: 98px;margin-right: -6px;" style="border-color: transparent">&nbsp;</div>
 			</div>
+		</div>
+		<div class="card-body efect-hover">
 	<?php
 		foreach ($listProductos as $pro) {
 	?>
