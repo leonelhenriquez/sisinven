@@ -31,16 +31,6 @@ class Dialog{
 		$("#"+this.getId()+">.dialog-box>.close_button").click((e) => {
 			root.hide();
 		});
-		/*$(window,"#"+this.getId()+", #"+this.getId()+" .dialog__content").resize(function(){
-			root.resizeDialog()
-		});
-		$("#"+this.getId()+" .dialog__content, #"+this.getId()+" .dialog__content *").bind("DOMSubtreeModified",function(){
-			root.resizeDialog()
-		});*/
-		/*$(document).on('change', "#"+this.getId()+" .dialog__content", function() {
-			root.resizeDialog()
-		});*/
-		//$(window).resize();
 	}
 
 	getId(){

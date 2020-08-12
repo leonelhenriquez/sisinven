@@ -25,34 +25,11 @@
 		public static function parseDateTime($dateTime = '0000-00-00 00:00:00',$format = "Y-m-d H:i:s"){
 			return (new DateTime($dateTime))->format($format);
 		}
-		public static function parseHora($hora = '00:00:00',$format = 'h:i a'){
-			/*if($hora=='00:00:00'){
-				return '';
-			}else{
-				$hora = new DateTime($hora);
-				return $hora->format($format);
-			}*/
-			return (new DateTime($hora))->format($format);
-			//return ($hora=='00:00:00') ? '' : (DateTime::createFromFormat('H:i:s',$hora)->format($format));
+		public static function parseHora($hora = '00:00:00',$format = 'H:i:s'){
+			return Util::parseDateTime($hora,$format);
 		}
-		public static function parseFecha($fecha = '0000-00-00',$format = 'Y-m-d',$hora = false){
-			return (new DateTime($fecha))->format($format);
-			//return ($fecha=='0000-00-00') ? '' : (DateTime::createFromFormat('Y-m-d',$fecha)->format($format));
-			if ($fecha=='0000-00-00'){ 
-				return '';
-			}else{
-				$date = DateTime::createFromFormat('Y-m-d',$fecha);
-				$__retorno = explode(' ',strftime($format,$date->getTimestamp()));
-				$__fecha = '';
-				foreach ($__retorno as $key => $value) {
-					if($value=='de'){
-						$__fecha .= ' '.$value;
-					}else{
-						$__fecha .= ' '.ucwords($value);
-					}
-				}
-				return $__fecha;
-			}
+		public static function parseFecha($fecha = '0000-00-00',$format = 'Y-m-d'){
+			return Util::parseDateTime($fecha,$format);
 		}
 		public static function addTime($time,$time_add){
 			//$starDate = new DateTime(date('Y').$mes.'-01');
@@ -119,5 +96,8 @@
 			}else{
 				return $_SERVER['REMOTE_ADDR'];
 			}
+		}
+		public static function moneyFormat($number){
+			return number_format($number, 2, '.', ',');
 		}
 	}

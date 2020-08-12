@@ -37,4 +37,4 @@
 	ini_set('display_errors', DEBUG);
 	//log_errors(false);
 
-	date_default_timezone_set('America/El_Salvador');
+	date_default_timezone_set('America/El_Salvador');	

@@ -44,11 +44,15 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 					</div>
 				</div>
 			</div>
-			<div class="row row-actions" id="rowActionsFactura" style="display: none">
+			<div class="row row-actions" id="rowActionsFactura" style="display:none;">
 				<div class="col  d-flex flex-row-reverse">
-					<button type="button" class="btn btn-primary color-btn-card" id="btn__finalizar_compra">
+					<button type="button" class="btn btn-primary color-btn-card" id="btn__finalizar_compra" style="margin-left: 15px;">
 						<span class="material-icons">shopping_cart</span>
 						Finalizar compra
+					</button>
+					<button type="button" class="btn btn-primary color-btn-card" id="btn__nueva_factura">
+						<span class="material-icons">shopping_cart</span>
+						Nueva factura
 					</button>
 				</div>
 			</div>
@@ -64,7 +68,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 			</div>
 			<div class="row title__productos">
 				<div class="col" style="max-width: 80px;">Codigo</div>
-				<div class="col" style="max-width: 100%;">Nombre</div>
+				<div class="col" style="max-width: 100%;">Nombre, Descripción, Marca, Modelo </div>
 				<div class="col" style="max-width: 150px;">Categoria</div>
 				<div class="col" style="max-width: 150px;">Proveedor</div>
 			</div>
@@ -158,6 +162,18 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 				return dataProductos[i];
 			}
 		}
+	}
+
+	function newFactura(){
+		listProductosComprar.forEach((val,id) =>{
+			listProductosComprar.delete(id);
+			$("#productoSeleccion .row[data-producto-id='"+id+"']").fadeOut('slow',() => {
+				$("#productoSeleccion .row[data-producto-id='"+id+"']").remove();
+			});
+		});
+		$("#txt_nombre_cliente").val("");
+		calcularTotalView();
+		eventActionsFactura();
 	}
 
 	function remove(id){
@@ -305,6 +321,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 		});
 		$("#txt_nombre_pro").keydown();
 	});
+	$("#btn__nueva_factura").click(newFactura);
 	$("#btn__finalizar_compra").click(() => {
 		var dataCompra = new Array();
 
@@ -326,7 +343,18 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 				)
 			},
 			(resp) => {
-				//console.log(resp);
+				var data = JSON.parse(resp);
+				if(typeof data.SAVED!="undefined" && data.SAVED){
+					var dialog = new Dialog();
+					dialog.setTitle("Factura guardada")
+					.setContent("La factura se almaceno correctamente")
+					.setActions("Cerrar")
+					.setActionClick(0,()=> {
+						newFactura();
+						dialog.hide();
+					})
+					.addHideEvent(()=> dialog.destroy()).show();
+				}
 			}
 		);
 

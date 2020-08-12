@@ -24,14 +24,14 @@
 
 			while ($producto = $this->getDatabase()->FetchArray($queryPro)) {
 				$cantidad_existencia_new = ((int)$producto['cantidad_existencia']) - getCantidadProducto($dataFactura['lista_compra'],$producto['id_producto']);
-				$this->getDatabase()->Query(sprintf("UPDATE productos SET cantidad_existencia = '%d'",$cantidad_existencia_new));
+				$this->getDatabase()->Query(sprintf("UPDATE productos SET cantidad_existencia = '%d' WHERE id_producto = '%d'",$cantidad_existencia_new,$producto['id_producto']));
 			}
 			$saved = true;
 		}
 	}
 
 	echo json_encode(array(
-		'SAVED':$saved,
+		'SAVED'=>$saved
 	));
 
 	function getStringProductosIdWhereSql($datos){

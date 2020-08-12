@@ -34,6 +34,7 @@
 		<script src="<?php echo _DIR_;?>node_modules/jquery-mask-plugin/dist/jquery.mask.min.js" type="text/javascript"></script>
 		<script src="<?php echo _DIR_;?>node_modules/jquery-mask-as-number/jquery-mask-as-number.min.js" type="text/javascript"></script>
 		<script src="<?php echo _DIR_;?>src/js/util.js" type="text/javascript"></script>
+		<script src="<?php echo _DIR_;?>node_modules/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
 		<script src="<?php echo _DIR_;?>node_modules/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="<?php echo _DIR_;?>node_modules/daemonite-material/js/material.min.js" type="text/javascript"></script>
 		<script type="text/javascript">
