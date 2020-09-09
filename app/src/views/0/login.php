@@ -21,18 +21,18 @@
 </div>
 
 <script type="text/javascript">
-	$("#itext__user").keydown(function(e){
+	$("#itext__user").keydown((e) => {
 		if(e.which==13){
 			$("#itext__password").focus();
 		}
 	});
-	$("#itext__password").keydown(function(e){
+	$("#itext__password").keydown((e) => {
 		if(e.which==13){
 			$("#btn__login").trigger('click');
 		}
 	});
 
-	$("#btn__login").click(function(){
+	$("#btn__login").click(() => {
 
 		$("#w_login .progress").addClass("show");
 
@@ -43,7 +43,7 @@
 				Util.post(
 					'login/ais',
 					{'user':$("#itext__user").val(),'pass':$("#itext__password").val()},
-					function(resp,status){
+					(resp,status) => {
 						//alert(resp);
 						obj = JSON.parse(resp);
 						console.log(obj.status);
