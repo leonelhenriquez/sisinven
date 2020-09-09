@@ -15,16 +15,18 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 		<?php
 			foreach ($listProv as $prov) {
 		?>
-				<div class="row" id="<?php echo "row_dir_".$prov->getIdProveedor() ?>" >
+				<div class="row" data-proveedor-id="<?php echo $prov->getIdProveedor(); ?>" data-proveedor-name="<?php echo $prov->getNombreProveedor(); ?>" id="<?php echo "row_dir_".$prov->getIdProveedor() ?>" >
 					<div class="col-4 col-md-3">Proveedor:</div>
 					<div class="col-8 col-md-6"><?php echo $prov->getNombreProveedor(); ?></div>
+					<?php if($this->UserData->getTipoUsuario()->getId()<=2) { ?>
 					<div class="col-3 col__buttons" style="max-width: min-content; margin: 0px 0px 0px auto;">
 						<div class="btn-group">
-							<button type="button" class="btn btn-primary color-btn-card btn-sm" onclick="">
+							<button type="button" class="btn btn-primary color-btn-card btn-sm btn_edit" data-proveedor-id="<?php echo $prov->getIdProveedor(); ?>" data-proveedor-name="<?php echo $prov->getNombreProveedor(); ?>">
 								<span class="material-icons">edit</span>
 							</button>
 						</div>
 					</div>
+					<?php } ?>
 				</div>
 
 		<?php 
@@ -32,6 +34,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 		?>
 			
 
+			<?php if($this->UserData->getTipoUsuario()->getId()<=2) { ?>
 			<div class="row">
 				<div class="col-12 col-md-12 d-flex flex-row-reverse">
 					<button type="button" class="btn btn-primary color-btn-card" id="btn__add_prov">
@@ -40,9 +43,11 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 					</button>
 				</div>
 			</div>
+			<?php } ?>
 		</div>
 	</div>
 </section>
+<?php if($this->UserData->getTipoUsuario()->getId()<=2) { ?>
 <script type="text/javascript">
 	$("#btn__add_prov").click(function() {
 		var dialog = new Dialog();
@@ -73,7 +78,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 			if($("#itext__nom_prov").val().trim()!=""){
 				dialog.removeClassDialogCard("error_show");
 				$("#"+dialog.getId()+" input, #"+dialog.getId()+" button").prop("disabled",true);
-				Util.post('proveedores/addproveedor',{'nom_prove':$("#itext__nom_prov").val().trim()},function(resp,status){
+				Util.post('proveedores/add',{'nom_prove':$("#itext__nom_prov").val().trim()},function(resp,status){
 					var showError = false;
 					$("#"+dialog.getId()+" input, #"+dialog.getId()+" button").prop("disabled",false);
 					try{
@@ -117,6 +122,10 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 
 	});
 
+	$("#view_proveedores .row button.btn_edit").click(function(){
+		edit($(this).attr("data-proveedor-id"),$(this).attr("data-proveedor-name"))
+	});
+
 	function edit(idprov,nombreprov){
 		var dialog = new Dialog();
 		dialog.setTitle("Agregar proveedor")
@@ -138,7 +147,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 				</div>
 			</div>
 		`)
-		.setActions(["Cerrar","Agregar"])
+		.setActions(["Cerrar","Guardar"])
 		.setActionClick(0,function(){
 			dialog.hide();
 		})
@@ -146,7 +155,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 			if($("#itext__nom_prov").val().trim()!=""){
 				dialog.removeClassDialogCard("error_show");
 				$("#"+dialog.getId()+" input, #"+dialog.getId()+" button").prop("disabled",true);
-				Util.post('addproveedor',{'nom_prove':$("#itext__nom_prov").val().trim()},function(resp,status){
+				Util.post('proveedores/update',{'id':idprov,'name':$("#itext__nom_prov").val().trim()},function(resp,status){
 					var showError = false;
 					$("#"+dialog.getId()+" input, #"+dialog.getId()+" button").prop("disabled",false);
 					try{
@@ -163,7 +172,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 						showError = true;
 					}
 					if(showError){
-						$("#"+dialog.getId()+" .msg_error .msg").html("No se puedo agregar el proveedor debido a un fallo interno, discúlpanos los inconvenientes.");
+						$("#"+dialog.getId()+" .msg_error .msg").html("No se puedo actulizar el proveedor debido a un fallo interno, discúlpanos los inconvenientes.");
 						dialog.addClassDialogCard("error_show");
 					}
 				});
@@ -192,3 +201,4 @@ while ($prov = $this->getDatabase()->FetchArray($query_prov)) {
 
 
 </script>
+<?php } ?>
