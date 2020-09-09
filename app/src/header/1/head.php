@@ -22,6 +22,10 @@
 					$icon = 'account_circle';
 				break;
 
+			case 'usuarios':
+					$icon = 'supervised_user_circle';
+				break;
+
 			case 'logout':
 					$icon = 'exit_to_app';
 				break;
@@ -89,6 +93,12 @@
 						<a class="nav-link <?php $isSelectPage('profile'); ?>" href="<?php echo _DIR_."profile";?>">
 							<i class="material-icons mr-3">account_circle</i>
 							Perfil
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link <?php $isSelectPage('usuarios'); ?>" href="<?php echo _DIR_."usuarios";?>">
+							<i class="material-icons mr-3">supervised_user_circle</i>
+							Usuarios
 						</a>
 					</li>
 					<li class="nav-item">

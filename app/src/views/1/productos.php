@@ -53,7 +53,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 ?>
 <section id="view_facturar_new" style="margin-top: 0px">
 	<div class="title__page"><i class="material-icons mr-3">shopping_basket</i> Productos</div>
-
+	<?php if($this->UserData->getTipoUsuario()->getId()<=2) { ?>
 	<div class="card btn_actions">
 		<div class="card-body">
 			<div class="row row-actions">
@@ -66,6 +66,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 			</div>
 		</div>
 	</div>
+	<?php } ?>
 
 	<div class="card addedbox custom-color custom-color-dark" style="background-color: #2196f3;">
 		<div class="card-body">
@@ -105,12 +106,14 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 						<button type="button" class="btn btn__option btn-primary color-btn-card btn-sm" onclick="view(<?php echo (int)$pro->getId(); ?>)">
 							<span class="material-icons">visibility</span>
 						</button>
+						<?php if($this->UserData->getTipoUsuario()->getId()<=2) { ?>
 						<button type="button" class="btn btn__option btn-primary color-btn-card btn-sm" onclick="edit(<?php echo (int)$pro->getId(); ?>)">
 							<span class="material-icons">edit</span>
 						</button>
 						<button type="button" class="btn btn__option btn-primary color-btn-card btn-sm" onclick="remove('<?php echo $pro->getId(); ?>')">
 							<span class="material-icons">delete</span>
 						</button>
+						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -150,7 +153,7 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 	?>
 	}
 
-
+<?php if($this->UserData->getTipoUsuario()->getId()<=2) { ?>
 	$("#btn__add_pro").click(function() {
 		var dialog = new Dialog();
 		dialog.setTitle("Agregar producto")
@@ -438,12 +441,9 @@ while ($prov = $this->getDatabase()->FetchArray($query_proveedores)) {
 		}, 100);
 
 	}
-
-
-
-
-
-
+<?php } ?>
+</script>
+<script type="text/javascript">
 	function view(id){
 		var dataProducto = dataProductos[id];
 		console.log(dataProducto)

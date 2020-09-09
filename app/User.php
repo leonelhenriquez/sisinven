@@ -3,6 +3,8 @@
 
 	use Wave\Util;
 
+	use app\TipoUsuario;
+
 	/*
 	 * @autor Leonel Henriquez
 	 */
@@ -10,6 +12,7 @@
 	{
 		private $id;
 		private $username;
+		private $tipoUsuario;
 		private $nombre;
 		private $apellido;
 		private $passwordChangedDate;
@@ -36,6 +39,18 @@
 		public function setUsername($username)
 		{
 			$this->username = $username;
+
+			return $this;
+		}
+
+		public function getTipoUsuario(): ?TipoUsuario
+		{
+			return $this->tipoUsuario;
+		}
+
+		public function setTipoUsuario($id,$nombre)
+		{
+			$this->tipoUsuario = new TipoUsuario($id,$nombre);
 
 			return $this;
 		}
