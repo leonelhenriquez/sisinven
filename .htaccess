@@ -11,8 +11,8 @@
 RewriteEngine on
 #RewriteCond %{HTTPS} off
 #RewriteRule ^(.*)$ https://%{SERVER_NAME}/%{REQUEST_URI} [R=301,L]
-#RewriteCond %{HTTP_HOST} ^socialclublifestyle.com
-#RewriteRule (.*) https://www.socialclublifestyle.com/$1 [R=301,L]
+#RewriteCond %{HTTP_HOST} ^namedominio.com
+#RewriteRule (.*) https://www.namedominio.com/$1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^.*$ /index.php [QSA,L]
@@ -23,6 +23,7 @@ RewriteRule ^.*$ /index.php [QSA,L]
 	order allow,deny
 	deny from all
 </Files>
+
 <FilesMatch ".*\.(json|html|txt|md)$">
     Order Allow,Deny
     Deny from all
@@ -37,6 +38,7 @@ RewriteRule ^.*$ /index.php [QSA,L]
     Order Allow,Deny
     Allow from all
 </Files>
+
 <Files />
     Order Allow,Deny
     Allow from all

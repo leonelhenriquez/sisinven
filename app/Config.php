@@ -31,7 +31,7 @@
 	define('__SERVER_DB__',	(__DEV_MODE__) ? 'localhost'	: 'localhost');
 	define('__DB_NAME__',	(__DEV_MODE__) ? 'sisinv' 		: '');
 	define('__USER_DB__',	(__DEV_MODE__) ? 'root'			: '');
-	define('__PASS_DB__',	(__DEV_MODE__) ? ''			: '');
+	define('__PASS_DB__',	(__DEV_MODE__) ? 'root'			: '');
 
 	error_reporting((DEBUG) ? E_ALL : 0);
 	ini_set('display_errors', DEBUG);

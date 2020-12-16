@@ -33,7 +33,6 @@
 
 
 
-
 <section id="view_facturar_new">
 	<div class="title__page" style="margin-top: -16px"><i class="material-icons mr-3">shopping_basket</i> Facturas</div>
 	<div class="card btn_actions">

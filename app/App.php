@@ -41,8 +41,11 @@
 				if($query = $this->getDatabase()->Query(
 
 					sprintf("
-						SELECT id_user, username, nombre, apellido, password_changed_date, empresa, IF(foto IS NULL,0,1) AS is_foto
-							FROM users WHERE id_user = '%d'",
+						SELECT u.id_user, u.username, u.tipo_usuario,tp.nombre AS nombre_tipo_usuario, 
+						u.nombre, u.apellido, u.password_changed_date, u.empresa, IF(u.foto IS NULL,0,1) AS is_foto 
+						FROM users AS u 
+						JOIN tipo_usuario AS tp ON tp.id_tipo=u.tipo_usuario 
+						WHERE u.id_user = '%d'",
 						$this->getSessionManager()->get("id"))
 					)
 				){
@@ -51,6 +54,7 @@
 					$this->UserData
 						->setId($user_data_query["id_user"])
 						->setUsername($user_data_query["username"])
+						->setTipoUsuario($user_data_query['tipo_usuario'],$user_data_query['nombre_tipo_usuario'])
 						->setNombre($user_data_query["nombre"])
 						->setApellido($user_data_query["apellido"])
 						->setPasswordChangedDate($user_data_query["password_changed_date"])
@@ -96,7 +100,10 @@
 						break;
 				}
 			}else{
-				switch ($url->getUrl()) {
+
+				$urlSelected = $url->getUrl();
+
+				switch ($urlSelected) {
 					case '/':
 					case "/home":
 							$view = new View();
@@ -119,12 +126,6 @@
 							$view->setFile(_DIR_FOLDERVIEW_."proveedores.php")
 								->setTitulo("Proveedores");
 						break;
-					case '/proveedores/addproveedor':
-							$view  = new View();
-							$view->setFile(_DIR_FOLDERVIEW_."addproveedor.php")
-								->setUseHeaders(false)
-								->setAjaxRequest(true);
-						break;
 					case '/logout':
 							$view = new View();
 							$view->setFile(_DIR_FOLDERVIEW_."logout.php")
@@ -134,24 +135,6 @@
 							$view = new View();
 							$view->setFile(_DIR_FOLDERVIEW_."productos.php")
 								->setTitulo("Productos");
-						break;
-					case '/productos/add':
-							$view  = new View();
-							$view->setFile(_DIR_FOLDERVIEW_."addproducto.php")
-								->setUseHeaders(false)
-								->setAjaxRequest(true);
-						break;
-					case '/productos/remove':
-							$view  = new View();
-							$view->setFile(_DIR_FOLDERVIEW_."removeproducto.php")
-								->setUseHeaders(false)
-								->setAjaxRequest(true);
-						break;
-					case '/productos/update':
-							$view  = new View();
-							$view->setFile(_DIR_FOLDERVIEW_."updateproducto.php")
-								->setUseHeaders(false)
-								->setAjaxRequest(true);
 						break;
 					case '/productos/get':
 							$view  = new View();
@@ -181,7 +164,43 @@
 					$view  = new View();
 					$view->setFile(_DIR_FOLDERVIEW_."image.php")
 						->setUseHeaders(false);
+				}else if($this->UserData->getTipoUsuario()->getId()<=2 && $urlSelected=="/productos/add"){
+					$view  = new View();
+					$view->setFile(_DIR_FOLDERVIEW_."addproducto.php")
+						->setUseHeaders(false)
+						->setAjaxRequest(true);
+					
+				}else if($this->UserData->getTipoUsuario()->getId()<=2 && $urlSelected=="/productos/remove"){
+					$view  = new View();
+					$view->setFile(_DIR_FOLDERVIEW_."removeproducto.php")
+						->setUseHeaders(false)
+						->setAjaxRequest(true);					
+				}else if($this->UserData->getTipoUsuario()->getId()<=2 && $urlSelected=="/productos/update"){
+					$view  = new View();
+					$view->setFile(_DIR_FOLDERVIEW_."updateproducto.php")
+						->setUseHeaders(false)
+						->setAjaxRequest(true);
+					
+				}else if($this->UserData->getTipoUsuario()->getId()<=2 && $urlSelected=="/proveedores/add"){
+					$view  = new View();
+					$view->setFile(_DIR_FOLDERVIEW_."addproveedor.php")
+						->setUseHeaders(false)
+						->setAjaxRequest(true);
+					
+				}else if($this->UserData->getTipoUsuario()->getId()<=2 && $urlSelected=="/proveedores/remove"){
+					$view  = new View();
+					$view->setFile(_DIR_FOLDERVIEW_."removeproveedor.php")
+						->setUseHeaders(false)
+						->setAjaxRequest(true);
+					
+				}else if($this->UserData->getTipoUsuario()->getId()<=2 && $urlSelected=="/proveedores/update"){
+					$view  = new View();
+					$view->setFile(_DIR_FOLDERVIEW_."updateproveedor.php")
+						->setUseHeaders(false)
+						->setAjaxRequest(true);
+					
 				}
+
 			}
 			return $view;
 		}
